@@ -1,0 +1,19 @@
+Hacker News Firefox OS App
+
+Idea: Beautiful Firefox OS Native Hacker News reader
+User: Readers of Hacker News
+User Enviroment: Bored, in a commute, killing time.
+
+
+Tasks:
+
+Pull in list of articles from Hacker News
+Display articles well on mobile interface
+System for pulling in comments and displaying the article
+
+
+Long Term Tasks:
+
+Loging into hacker news
+Upvoting
+Posting Articles

@@ -10,26 +10,29 @@
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="css/app.css">
+    <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-size: 10px;
+      background-color: #fff;
+    }
+    body {
+      background: none;
+    }
+    section[role="region"] {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    </style>
   </head>
-  <body>
-    <p>
-      <strong>Warning</strong>: the contents in this tempate are
-      deprecated, and will soon be replaced by a much different
-      structure. Volo and several other things will be removed to offer
-      a simpler and more extensible template.
-    </p>
-
-    <p>
-      Welcome to your awesome web app. This was created from the
-      <a href="https://github.com/mozilla/mortar-app-stub">mortar-app-stub</a>
-      template, one of the
-      <a href="https://github.com/mozilla/mortar">mortar templates</a>.
-    </p>
-
-    <p>
-      <a href="https://developer.mozilla.org/en-US/docs/Apps/App_templates#What_Now.3F">
-        What now?</a>
-    </p>
+  <body role="application">
+    <section role="region">
+      <header>
+        <a href="#"><span class="icon icon-back">back</span></a>
+        <h1>Hacker News</h1>
+      </header>
+    </section>
     
     <!-- Using require.js, a module system for javascript, include the
          js files. This loads "main.js", which in turn can load other

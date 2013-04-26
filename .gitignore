@@ -36,6 +36,7 @@ nbproject
 intermediate
 publish
 .idea
+.git
 
 # build script local files
 build/buildinfo.properties

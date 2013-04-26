@@ -305,6 +305,10 @@ section[role="region"].skin-organic header h2,
   background-color: #7f7f7f;
   color: #fff;
 }
+section[role="region"] {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
 html[dir="rtl"] section[role="region"] > header:first-child h1 {
   text-align: right;
   margin: 0 3rem 0 0;

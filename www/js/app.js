@@ -41,7 +41,7 @@ define(function(require) {
     }
 
     function parse(data) {
-        alert($(data).find("h1").text());
+        alert($(data).find("a").text());
     }
 
     function fetchPage(url) {

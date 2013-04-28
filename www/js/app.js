@@ -23,13 +23,17 @@ define(function(require) {
         $(elem).height($(window).height()-50);
     }
 
-    function articleClick(elem){
+    function sharedClick(){
         $('.icon').removeClass("icon-close").addClass("icon-back");
         window.location = "#slide";
     }
 
+    function articleClick(elem){
+        sharedClick();
+    }
+
     function commentClick(elem){
-        window.location = "#slide";
+        sharedClick();
     }
 
     function cornerClick(elem){
@@ -40,26 +44,22 @@ define(function(require) {
         $('.icon').removeClass("icon-back").addClass("icon-close");
     }
 
-    function parse(data) {
-        alert($(data).find("a").text());
+    function parse() {
+        alert(this.responseXML.title);
     }
 
-    function fetchPage(url) {
-        $.ajax({
-            type: "GET",
-            url: url,
-            error: function(request, status) {
-                alert('Error fetching ' + url);
-            },
-            success: function(data) {
-                parse(data.responseText);
-            }
-        });
+    function getHTML(url){
+        var request = new XMLHttpRequest({mozSystem: true});
+
+        request.onload = parse;
+
+        request.open("GET", url);
+        request.responseType = "document";
+        request.send();
     }
 
     readjustHeight('.content');
     readjustHeight('.fulltext');
-
 
     $(".left").click(function() {
         articleClick($(this));
@@ -67,10 +67,10 @@ define(function(require) {
     $(".right").click(function() {
         commentClick($(this));
     });
-    $(".icon").click(function() {
+    $(".icon-box").click(function() {
         cornerClick($(this));
     });
 
-    fetchPage("retrieve.php");
+    getHTML("https://news.ycombinator.com/");
 });
 

@@ -23,7 +23,35 @@ define(function(require) {
         $(elem).height($(window).height()-50);
     }
 
+    function articleClick(elem){
+        $('.icon').removeClass("icon-close").addClass("icon-back");
+        window.location = "#slide";
+    }
+
+    function commentClick(elem){
+        window.location = "#slide";
+    }
+
+    function cornerClick(elem){
+        if($('.icon').hasClass("icon-close")){
+            close();
+        }
+
+        $('.icon').removeClass("icon-back").addClass("icon-close");
+    }
+
     readjustHeight('.content');
     readjustHeight('.fulltext');
+
+
+    $(".left").click(function() {
+        articleClick($(this));
+    });
+    $(".right").click(function() {
+        commentClick($(this));
+    });
+    $(".icon").click(function() {
+        cornerClick($(this));
+    });
 });
 

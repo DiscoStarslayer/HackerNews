@@ -19,12 +19,11 @@ define(function(require) {
 
     // Write your app here.
 
+    function readjustHeight(elem){
+        $(elem).height($(window).height()-50);
+    }
 
-
-
-
-
-
-
+    readjustHeight('.content');
+    readjustHeight('.fulltext');
 });
 

@@ -40,6 +40,23 @@ define(function(require) {
         $('.icon').removeClass("icon-back").addClass("icon-close");
     }
 
+    function parse(data) {
+        alert($(data).find("h1").text());
+    }
+
+    function fetchPage(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            error: function(request, status) {
+                alert('Error fetching ' + url);
+            },
+            success: function(data) {
+                parse(data.responseText);
+            }
+        });
+    }
+
     readjustHeight('.content');
     readjustHeight('.fulltext');
 
@@ -53,5 +70,7 @@ define(function(require) {
     $(".icon").click(function() {
         cornerClick($(this));
     });
+
+    fetchPage("retrieve.php");
 });
 

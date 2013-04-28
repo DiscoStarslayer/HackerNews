@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# HHdB1KDz8Oa0qa++giaLb4sMf+w=
+# ssdtB2v2Br9/ZtgZD8Gha72+LaY=
 
 CACHE:
 favicon.ico
@@ -48,6 +48,7 @@ img/.gitignore
 img/icons/icon-60.png
 build.txt
 index.html
+retrieve.php
 
 # catch-all for anything else
 NETWORK:

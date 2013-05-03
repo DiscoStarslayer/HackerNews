@@ -86,13 +86,16 @@ define(function(require) {
         var comments = new Array();
 
         for (var i = 0; i < rawSubText.length; i++){
-            var rawText = rawSubText[i].textContent;
+            articles[i].commentsURL = rawSubText[i].childNodes[4].getAttribute("href");
 
-            //assuming user cannot have | in name
-            var splitText = rawText.split("|");
+            var subText = rawSubText[i].childNodes[0].textContent +
+                          rawSubText[i].childNodes[1].textContent +
+                          rawSubText[i].childNodes[2].textContent +
+                          rawSubText[i].childNodes[3].textContent;
 
-            articles[i].subText = splitText[0];
-            articles[i].comments = splitText[1];
+            //remove 3 trailling characters
+            articles[i].subText = subText.slice(0, -3);
+            articles[i].comments = rawSubText[i].childNodes[4].textContent;
         }
 
         displayArticles(articles);

@@ -19,6 +19,19 @@ define(function(require) {
 
     // Write your app here.
 
+    function openArticleInBrowser(url){
+        var url = $("#frame").attr("src");
+        cornerClick(this);
+        window.location = "#";
+        var openURL = new MozActivity({
+            name: "view",
+            data: {
+                type: "url", // Possibly text/html in future versions
+                url: url
+            }
+        });
+    }
+
     function readjustHeight(elem){
         $(elem).height($(window).height()-50);
     }
@@ -36,12 +49,16 @@ define(function(require) {
 
     function articleClick(elem){
         slideWindow();
-        $('#frame').attr("src", elem.attr("data-url"));
+        window.setTimeout(function(){
+            $('#header').text("Article");
+            $('#openBrowse').show();
+            $('#frame').attr("src", elem.attr("data-url"));
+        }, 500);
     }
 
     function commentClick(elem){
-        alert(elem.attr("data-url"));
         slideWindow();
+        alert(elem.attr("data-url"));
     }
 
     function cornerClick(elem){
@@ -50,7 +67,11 @@ define(function(require) {
         }
 
         $('.icon').removeClass("icon-back").addClass("icon-close");
-        $('#frame').attr("src", "");
+        $('#openBrowse').hide();
+        $('#header').text("Hacker News");
+        window.setTimeout(function() {
+            $('#frame').attr("src", "");
+        }, 500);
     }
 
     function createArticleBlock(article){
@@ -75,6 +96,9 @@ define(function(require) {
         });
         $(".right").click(function() {
             commentClick($(this));
+        });
+        $("#openBrowse").click(function(){
+            openArticleInBrowser();
         });
     }
 
@@ -132,5 +156,6 @@ define(function(require) {
     setInterval(readjustApplicationHeight, 1000);
 
     getHTML("https://news.ycombinator.com/", parseHomepage);
+
 });
 

@@ -18,7 +18,10 @@
           <section role="region">
             <header>
                 <a href="#" class="icon-box"><span class="icon icon-close">back</span></a>
-                <h1>Hacker News</h1>
+                <menu type="toolbar">
+                    <button id="openBrowse">Open in Browser</button>
+                </menu>
+                <h1 id="header">Hacker News</h1>
             </header>
           </section>
         </div>
@@ -32,7 +35,7 @@
 
         <div class="fulltext-slider">
             <div class="fulltext">
-                <iframe src="" id="frame" mozbrowser remote>
+                <iframe src="" id="frame" sandbox="allow-forms allow-scripts" mozbrowser remote>
                 </iframe>
             </div>
         </div>

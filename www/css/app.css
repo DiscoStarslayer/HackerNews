@@ -105,3 +105,9 @@ table {
 	width: 100%;
 	border-style: none;
 }
+
+#openBrowse{
+	padding: 0px;
+	margin: 0 -4px;	
+	display: none;
+}

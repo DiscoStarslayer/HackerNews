@@ -44,6 +44,16 @@ define(function(require) {
         $('.icon').removeClass("icon-back").addClass("icon-close");
     }
 
+    function createArticleBlock(title, points, user, time, comments){
+
+    }
+
+    function displayArticles(titles){
+        for (var i = 0; i < titles.length; i++){
+            alert(titles[i]);
+        }
+    }
+
     function parseHomepage() {
         var page = this.responseXML;
 
@@ -51,15 +61,11 @@ define(function(require) {
 
         var titles = new Array();
 
-        for (var i = 1; i < titleClasses.length; i++){
+        for (var i = 1; i < titleClasses.length; i = i + 2){
             titles.push(titleClasses[i].childNodes[0].textContent);
-            //increase i by two to ignore even numbers
-            i++;
         }
 
-        for (var i = 0; i < titles.length; i++){
-            alert(titles[i]);
-        }
+        displayArticles(titles);
     }
 
     function getHTML(url, parseFunction){

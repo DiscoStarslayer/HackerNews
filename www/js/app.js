@@ -79,7 +79,8 @@ define(function(require) {
         var titles = new Array();
 
         for (var i = 1; i < titleClasses.length; i = i + 2){
-            articles.push({ title : titleClasses[i].childNodes[0].textContent});
+            articles.push({ title : titleClasses[i].childNodes[0].textContent, 
+                            articleURL : titleClasses[i].childNodes[0].getAttribute("href")});
         }
 
         var subText = new Array();

@@ -100,3 +100,8 @@ table {
 .right {
 	border-left-width: 0;
 }
+
+#frame {
+	width: 100%;
+	border-style: none;
+}

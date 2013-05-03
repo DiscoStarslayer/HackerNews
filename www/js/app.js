@@ -26,6 +26,7 @@ define(function(require) {
     function readjustApplicationHeight(){
         readjustHeight('.content');
         readjustHeight('.fulltext');
+        readjustHeight('#frame');
     }
 
     function slideWindow(){
@@ -34,8 +35,8 @@ define(function(require) {
     }
 
     function articleClick(elem){
-        alert(elem.attr("data-url"));
         slideWindow();
+        $('#frame').attr("src", elem.attr("data-url"));
     }
 
     function commentClick(elem){
@@ -49,6 +50,7 @@ define(function(require) {
         }
 
         $('.icon').removeClass("icon-back").addClass("icon-close");
+        $('#frame').attr("src", "");
     }
 
     function createArticleBlock(article){
@@ -90,16 +92,21 @@ define(function(require) {
         }
 
         for (var i = 0; i < rawSubText.length; i++){
-            articles[i].commentsURL = rawSubText[i].childNodes[4].getAttribute("href");
+            if (rawSubText[i].childNodes.length > 1){
+                var subText = rawSubText[i].childNodes[0].textContent +
+                              rawSubText[i].childNodes[1].textContent +
+                              rawSubText[i].childNodes[2].textContent +
+                              rawSubText[i].childNodes[3].textContent;
 
-            var subText = rawSubText[i].childNodes[0].textContent +
-                          rawSubText[i].childNodes[1].textContent +
-                          rawSubText[i].childNodes[2].textContent +
-                          rawSubText[i].childNodes[3].textContent;
-
-            //remove 3 trailling characters
-            articles[i].subText = subText.slice(0, -3);
-            articles[i].comments = rawSubText[i].childNodes[4].textContent;
+                //remove 3 trailling characters
+                articles[i].subText = subText.slice(0, -3);
+                articles[i].comments = rawSubText[i].childNodes[4].textContent;
+                articles[i].commentsURL = rawSubText[i].childNodes[4].getAttribute("href");
+            } else {
+                articles[i].subText = rawSubText[i].childNodes[0].textContent;
+                articles[i].comments = "Job";
+                articles[i].commentsURL = articles[i].articleURL;
+            }
         }
 
         displayArticles(articles);

@@ -44,25 +44,35 @@ define(function(require) {
         $('.icon').removeClass("icon-back").addClass("icon-close");
     }
 
-    function createArticleBlock(title, points, user, time, comments){
+    function createArticleBlock(title, subText, comments){
         var block = '<tr><td class="left"><p><span class="title">' + title + 
-                    '</span><br /><span class="subtitle">' + points + 
-                    ' points by ' + user + ' ' + time + 
-                    ' ago</span></p></td><td class="right"><p class="rightSide">' + comments + 
-                    ' Comments</p></td></tr>';
+                    '</span><br /><span class="subtitle">' + subText +
+                    '</span></p></td><td class="right"><p class="rightSide">' + comments + 
+                    '</p></td></tr>';
         $("#articleTable").after(block);
     }
 
-    function displayArticles(titles){
-        for (var i = 0; i < titles.length; i++){
-            createArticleBlock(titles[i], '30', 'csmajorfive', '2 hours', '13');
+    function displayArticles(titles, subText, comments){
+        //decrement so articles appear in proper order
+        for (var i = titles.length-1; i >= 0; i--){
+            createArticleBlock(titles[i], subText[i], comments[i]);
         }
+    }
+
+    function addClickHandlers(){
+        $(".left").click(function() {
+            articleClick($(this));
+        });
+        $(".right").click(function() {
+            commentClick($(this));
+        });
     }
 
     function parseHomepage() {
         var page = this.responseXML;
 
         var titleClasses = page.getElementsByClassName('title');
+        var rawSubText = page.getElementsByClassName('subtext');
 
         var titles = new Array();
 
@@ -70,7 +80,21 @@ define(function(require) {
             titles.push(titleClasses[i].childNodes[0].textContent);
         }
 
-        displayArticles(titles);
+        var subText = new Array();
+        var comments = new Array();
+
+        for (var i = 0; i < rawSubText.length; i++){
+            var rawText = rawSubText[i].textContent;
+
+            //assuming user cannot have | in name
+            var splitText = rawText.split("|");
+
+            subText.push(splitText[0]);
+            comments.push(splitText[1]);
+        }
+
+        displayArticles(titles, subText, comments);
+        addClickHandlers();
     }
 
     function getHTML(url, parseFunction){
@@ -86,12 +110,6 @@ define(function(require) {
     readjustHeight('.content');
     readjustHeight('.fulltext');
 
-    $(".left").click(function() {
-        articleClick($(this));
-    });
-    $(".right").click(function() {
-        commentClick($(this));
-    });
     $(".icon-box").click(function() {
         cornerClick($(this));
     });

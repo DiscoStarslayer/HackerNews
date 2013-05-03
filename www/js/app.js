@@ -45,12 +45,17 @@ define(function(require) {
     }
 
     function createArticleBlock(title, points, user, time, comments){
-
+        var block = '<tr><td class="left"><p><span class="title">' + title + 
+                    '</span><br /><span class="subtitle">' + points + 
+                    ' points by ' + user + ' ' + time + 
+                    ' ago</span></p></td><td class="right"><p class="rightSide">' + comments + 
+                    ' Comments</p></td></tr>';
+        $("#articleTable").after(block);
     }
 
     function displayArticles(titles){
         for (var i = 0; i < titles.length; i++){
-            alert(titles[i]);
+            createArticleBlock(titles[i], '30', 'csmajorfive', '2 hours', '13');
         }
     }
 

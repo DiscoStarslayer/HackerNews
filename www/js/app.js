@@ -44,14 +44,28 @@ define(function(require) {
         $('.icon').removeClass("icon-back").addClass("icon-close");
     }
 
-    function parse() {
-        alert(this.responseXML.title);
+    function parseHomepage() {
+        var page = this.responseXML;
+
+        var titleClasses = page.getElementsByClassName('title');
+
+        var titles = new Array();
+
+        for (var i = 1; i < titleClasses.length; i++){
+            titles.push(titleClasses[i].childNodes[0].textContent);
+            //increase i by two to ignore even numbers
+            i++;
+        }
+
+        for (var i = 0; i < titles.length; i++){
+            alert(titles[i]);
+        }
     }
 
-    function getHTML(url){
+    function getHTML(url, parseFunction){
         var request = new XMLHttpRequest({mozSystem: true});
 
-        request.onload = parse;
+        request.onload = parseFunction;
 
         request.open("GET", url);
         request.responseType = "document";
@@ -71,6 +85,6 @@ define(function(require) {
         cornerClick($(this));
     });
 
-    getHTML("https://news.ycombinator.com/");
+    getHTML("https://news.ycombinator.com/", parseHomepage);
 });
 

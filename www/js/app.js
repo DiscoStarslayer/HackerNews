@@ -23,17 +23,24 @@ define(function(require) {
         $(elem).height($(window).height()-50);
     }
 
-    function sharedClick(){
+    function readjustApplicationHeight(){
+        readjustHeight('.content');
+        readjustHeight('.fulltext');
+    }
+
+    function slideWindow(){
         $('.icon').removeClass("icon-close").addClass("icon-back");
         window.location = "#slide";
     }
 
     function articleClick(elem){
-        sharedClick();
+        alert(elem.attr("data-url"));
+        slideWindow();
     }
 
     function commentClick(elem){
-        sharedClick();
+        alert(elem.attr("data-url"));
+        slideWindow();
     }
 
     function cornerClick(elem){
@@ -109,12 +116,13 @@ define(function(require) {
         request.send();
     }
 
-    readjustHeight('.content');
-    readjustHeight('.fulltext');
-
     $(".icon-box").click(function() {
         cornerClick($(this));
     });
+
+    readjustApplicationHeight();
+
+    setInterval(readjustApplicationHeight, 1000);
 
     getHTML("https://news.ycombinator.com/", parseHomepage);
 });

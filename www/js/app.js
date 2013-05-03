@@ -44,18 +44,18 @@ define(function(require) {
         $('.icon').removeClass("icon-back").addClass("icon-close");
     }
 
-    function createArticleBlock(title, subText, comments){
-        var block = '<tr><td class="left"><p><span class="title">' + title + 
-                    '</span><br /><span class="subtitle">' + subText +
-                    '</span></p></td><td class="right"><p class="rightSide">' + comments + 
+    function createArticleBlock(article){
+        var block = '<tr><td class="left"><p><span class="title">' + article.title + 
+                    '</span><br /><span class="subtitle">' + article.subText +
+                    '</span></p></td><td class="right"><p class="rightSide">' + article.comments + 
                     '</p></td></tr>';
         $("#articleTable").after(block);
     }
 
-    function displayArticles(titles, subText, comments){
+    function displayArticles(articles){
         //decrement so articles appear in proper order
-        for (var i = titles.length-1; i >= 0; i--){
-            createArticleBlock(titles[i], subText[i], comments[i]);
+        for (var i = articles.length-1; i >= 0; i--){
+            createArticleBlock(articles[i]);
         }
     }
 
@@ -69,6 +69,8 @@ define(function(require) {
     }
 
     function parseHomepage() {
+        var articles = new Array();
+
         var page = this.responseXML;
 
         var titleClasses = page.getElementsByClassName('title');
@@ -77,7 +79,7 @@ define(function(require) {
         var titles = new Array();
 
         for (var i = 1; i < titleClasses.length; i = i + 2){
-            titles.push(titleClasses[i].childNodes[0].textContent);
+            articles.push({ title : titleClasses[i].childNodes[0].textContent});
         }
 
         var subText = new Array();
@@ -89,11 +91,11 @@ define(function(require) {
             //assuming user cannot have | in name
             var splitText = rawText.split("|");
 
-            subText.push(splitText[0]);
-            comments.push(splitText[1]);
+            articles[i].subText = splitText[0];
+            articles[i].comments = splitText[1];
         }
 
-        displayArticles(titles, subText, comments);
+        displayArticles(articles);
         addClickHandlers();
     }
 

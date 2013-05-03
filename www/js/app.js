@@ -45,10 +45,11 @@ define(function(require) {
     }
 
     function createArticleBlock(article){
-        var block = '<tr><td class="left"><p><span class="title">' + article.title + 
+        var block = '<tr><td class="left" data-url="' + article.articleURL + 
+                    '"><p><span class="title">' + article.title + 
                     '</span><br /><span class="subtitle">' + article.subText +
-                    '</span></p></td><td class="right"><p class="rightSide">' + article.comments + 
-                    '</p></td></tr>';
+                    '</span></p></td><td class="right" data-url="' + article.commentsURL +
+                    '"><p class="comments">' + article.comments + '</p></td></tr>';
         $("#articleTable").after(block);
     }
 
@@ -76,15 +77,10 @@ define(function(require) {
         var titleClasses = page.getElementsByClassName('title');
         var rawSubText = page.getElementsByClassName('subtext');
 
-        var titles = new Array();
-
         for (var i = 1; i < titleClasses.length; i = i + 2){
             articles.push({ title : titleClasses[i].childNodes[0].textContent, 
                             articleURL : titleClasses[i].childNodes[0].getAttribute("href")});
         }
-
-        var subText = new Array();
-        var comments = new Array();
 
         for (var i = 0; i < rawSubText.length; i++){
             articles[i].commentsURL = rawSubText[i].childNodes[4].getAttribute("href");

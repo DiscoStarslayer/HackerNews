@@ -129,15 +129,39 @@ define(function(require) {
         });
     }
 
+    function parseComment(rawComment){
+        var comment = { body : "",
+                       meta : "",
+                       indents : 0};
+
+        //Calculate indents by length of blank gif on page
+        var blankGif = rawComment.getElementsByTagName("img")[0];
+
+        comment.indents = parseInt(blankGif.getAttribute('width'))/40;
+
+        var meta = rawComment.getElementsByClassName("comhead")[0].textContent;
+        var body = rawComment.getElementsByClassName("comment")[0].textContent;
+
+        comment.meta = meta;
+        comment.body = body;
+
+
+        return comment;
+    }
+
     function parseComments(){
         var page = this.responseXML;
-        var temp = { body : " So how would context switching occur if not initiated by an interrupt?", 
-                     meta : "DigitalJack 4 hours ago",
-                     indents : 0};
+        var tables = page.getElementsByTagName("table");
 
-        for (var i = 0; i < 100; i++){
-            temp.indents = Math.floor(Math.random()*11);
-            createCommentBlock(temp);
+        //3rd table is where the comments start. Let's hope HN doesn't change anytime soon
+        var commentsTable = tables[3];
+
+        var comments = commentsTable.getElementsByTagName("table");
+
+        var parsedComments = new Array();
+        for (var i = 0; i < comments.length; i++){
+            parsedComments.push(parseComment(comments[i]));
+            createCommentBlock(parsedComments[i]);
         }
     }
 

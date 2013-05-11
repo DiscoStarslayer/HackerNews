@@ -60,7 +60,7 @@ define(function(require) {
 
     function commentClick(elem){
         $('.fulltext').empty();
-        $('.fulltext').append('<table id="commentTable"></table>');
+        $('.fulltext').append('<div id="comments-window"></div>');
 
         slideWindow();
 
@@ -88,13 +88,27 @@ define(function(require) {
                     '"><p><span class="title">' + article.title + 
                     '</span><br /><span class="subtitle">' + article.subText +
                     '</span></p></td><td class="right" data-url="' + article.commentsURL +
-                    '"><p class="comments">' + article.comments + '</p></td></tr>';
+                    '"><p class="comment-number">' + article.comments + '</p></td></tr>';
         $("#articleTable").append(block);
     }
 
     function createCommentBlock(comment){
-        var block = '<tr><td><p>' + comment.body + '</p></td></tr>';
-        $("#commentTable").append(block);
+        var indent = '';
+        for (var i = 0; i < comment.indents; i++){
+            indent = indent + '<div class="buffer"></div>';
+        }
+
+        var block = '<div class="comment">\
+                        '+ indent + '\
+                        <div class="comment-container">\
+                            <div class="meta">' +
+                                comment.meta +
+                           '</div><div class="body">' +
+                                comment.body +
+                           '</div>\
+                        </div>\
+                     </div>';
+        $("#comments-window").append(block);
     }
 
     function displayArticles(articles){
@@ -117,9 +131,12 @@ define(function(require) {
 
     function parseComments(){
         var page = this.responseXML;
-        var temp = { body : "This is a test" };
+        var temp = { body : " So how would context switching occur if not initiated by an interrupt?", 
+                     meta : "DigitalJack 4 hours ago",
+                     indents : 0};
 
         for (var i = 0; i < 100; i++){
+            temp.indents = Math.floor(Math.random()*11);
             createCommentBlock(temp);
         }
     }
@@ -178,6 +195,4 @@ define(function(require) {
     setInterval(readjustApplicationHeight, 1000);
 
     getHTML("https://news.ycombinator.com/", parseHomepage);
-
 });
-

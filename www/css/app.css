@@ -111,3 +111,7 @@ table {
 	margin: 0 -4px;	
 	display: none;
 }
+
+#commentTable {
+	width: 100%;
+}

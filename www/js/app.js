@@ -48,6 +48,8 @@ define(function(require) {
     }
 
     function articleClick(elem){
+        $('.fulltext').empty();
+        $('.fulltext').append('<iframe src="" id="frame" sandbox="allow-forms allow-scripts" mozbrowser remote></iframe>');
         slideWindow();
         window.setTimeout(function(){
             $('#header').text("Article");
@@ -57,8 +59,15 @@ define(function(require) {
     }
 
     function commentClick(elem){
+        $('.fulltext').empty();
+        $('.fulltext').append('<table id="commentTable"></table>');
+
         slideWindow();
-        alert(elem.attr("data-url"));
+
+        window.setTimeout(function(){
+            $('#header').text("Comments");
+            getHTML('https://news.ycombinator.com/' + elem.attr("data-url"), parseComments);
+        }, 500);
     }
 
     function cornerClick(elem){
@@ -80,12 +89,16 @@ define(function(require) {
                     '</span><br /><span class="subtitle">' + article.subText +
                     '</span></p></td><td class="right" data-url="' + article.commentsURL +
                     '"><p class="comments">' + article.comments + '</p></td></tr>';
-        $("#articleTable").after(block);
+        $("#articleTable").append(block);
+    }
+
+    function createCommentBlock(comment){
+        var block = '<tr><td><p>' + comment.body + '</p></td></tr>';
+        $("#commentTable").append(block);
     }
 
     function displayArticles(articles){
-        //decrement so articles appear in proper order
-        for (var i = articles.length-1; i >= 0; i--){
+        for (var i = 0; i < articles.length; i++){
             createArticleBlock(articles[i]);
         }
     }
@@ -100,6 +113,15 @@ define(function(require) {
         $("#openBrowse").click(function(){
             openArticleInBrowser();
         });
+    }
+
+    function parseComments(){
+        var page = this.responseXML;
+        var temp = { body : "This is a test" };
+
+        for (var i = 0; i < 100; i++){
+            createCommentBlock(temp);
+        }
     }
 
     function parseHomepage() {

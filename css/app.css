@@ -406,3 +406,34 @@ table {
 .right {
 	border-left-width: 0;
 }
+#frame {
+	width: 100%;
+	border-style: none;
+}
+#openBrowse {
+	padding: 0px;
+	margin: 0 -4px;	
+	display: none;
+}
+#comment-window {
+	width: 100%;
+}
+.comment {
+	width: 100%;
+	display: table;
+}
+.comment > div {
+	display: table-cell;
+}
+.buffer {
+	border-width: 0 0 0 1px;
+	border-style: dashed;
+	width: 5px;
+	height: 100%;
+}
+.comment-container {
+	padding: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	float: left;
+}

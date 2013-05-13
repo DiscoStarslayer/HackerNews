@@ -19,6 +19,19 @@ define(function(require) {
 
     // Write your app here.
 
+    //HTML escape function, via http://stackoverflow.com/questions/24816/escaping-html-strings-with-jquery
+
+    var escapeHTML = (function () {
+        'use strict';
+        var chr = {
+            '"': '&quot;', '&': '&amp;', "'": '&#39;',
+            '/': '&#47;',  '<': '&lt;',  '>': '&gt;'
+        };
+        return function (text) {
+            return text.replace(/[\"&'\/<>]/g, function (a) { return chr[a]; });
+        };
+    }());
+
     function openArticleInBrowser(url){
         var url = $("#frame").attr("src");
         cornerClick(this);
@@ -139,8 +152,8 @@ define(function(require) {
 
         comment.indents = parseInt(blankGif.getAttribute('width'))/40;
 
-        var meta = rawComment.getElementsByClassName("comhead")[0].textContent;
-        var body = rawComment.getElementsByClassName("comment")[0].textContent;
+        var meta = escapeHTML(rawComment.getElementsByClassName("comhead")[0].textContent);
+        var body = escapeHTML(rawComment.getElementsByClassName("comment")[0].textContent);
 
         comment.meta = meta;
         comment.body = body;
@@ -174,7 +187,7 @@ define(function(require) {
         var rawSubText = page.getElementsByClassName('subtext');
 
         for (var i = 1; i < titleClasses.length; i = i + 2){
-            articles.push({ title : titleClasses[i].childNodes[0].textContent, 
+            articles.push({ title : escapeHTML(titleClasses[i].childNodes[0].textContent), 
                             articleURL : titleClasses[i].childNodes[0].getAttribute("href")});
         }
 

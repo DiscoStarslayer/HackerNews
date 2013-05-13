@@ -166,6 +166,10 @@ define(function(require) {
         var meta = escapeHTML(rawComment.getElementsByClassName("comhead")[0].textContent);
         var body = escapeHTML(rawComment.getElementsByClassName("comment")[0].textContent);
 
+        //re to remove reply at end of body. For some reason reply is randomly in the comment span
+        var re = /reply$/i;
+        body = body.replace(re, "");
+
         comment.meta = meta;
         comment.body = body;
 

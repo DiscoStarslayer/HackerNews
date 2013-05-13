@@ -42,7 +42,7 @@ section[role="region"] {
 }
 
 .content {
-	margin-top: 50px;
+	margin-top: 5rem;
 	overflow: auto;
 	width: 100%;
 }
@@ -61,7 +61,7 @@ section[role="region"] {
 }
 
 .fulltext {
-	margin-top: 50px;
+	margin-top: 5rem;
 	overflow: auto;
 	width: 100%;
 }

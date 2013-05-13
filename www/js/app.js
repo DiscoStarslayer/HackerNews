@@ -32,6 +32,16 @@ define(function(require) {
         };
     }());
 
+    //Get base rem value, via http://stackoverflow.com/questions/16089004/use-jquery-to-increase-width-of-container-by-10-rem
+    var rem = function rem() {
+         var html = document.getElementsByTagName('html')[0];
+
+         return function () {
+             return parseInt(window.getComputedStyle(html)['fontSize']);
+         }
+     }();
+
+
     function openArticleInBrowser(url){
         var url = $("#frame").attr("src");
         cornerClick(this);
@@ -46,12 +56,13 @@ define(function(require) {
     }
 
     function readjustHeight(elem){
-        $(elem).height($(window).height()-50);
+        $(elem).height($(window).height()-(rem() * 5));
     }
 
     function readjustApplicationHeight(){
         readjustHeight('.content');
         readjustHeight('.fulltext');
+
         readjustHeight('#frame');
     }
 

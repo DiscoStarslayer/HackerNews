@@ -56,7 +56,7 @@ define(function(require) {
     }
 
     function readjustHeight(elem){
-        $(elem).height($(window).height()-(rem() * 5));
+        $(elem).height(window.innerHeight-(rem() * 5));
     }
 
     function readjustApplicationHeight(){
@@ -242,11 +242,16 @@ define(function(require) {
         cornerClick($(this));
     });
 
-    // readjustApplicationHeight();
+    
 
-    // setInterval(readjustApplicationHeight, 1000);
-
-    window.screen.onmozorientationchange = readjustApplicationHeight;
+    // add interval to readjust on orientation change
+    // for some reason window.innerHeight does not change instantly
+    // on the device while it does in the simulator. This hack
+    // avoids the weird timing issue
+    readjustApplicationHeight();
+    window.screen.onmozorientationchange = (function () {
+        setInterval(readjustApplicationHeight, 750);
+    });
 
     getHTML("https://news.ycombinator.com/", parseHomepage);
 });

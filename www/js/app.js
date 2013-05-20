@@ -242,9 +242,11 @@ define(function(require) {
         cornerClick($(this));
     });
 
-    readjustApplicationHeight();
+    // readjustApplicationHeight();
 
-    setInterval(readjustApplicationHeight, 1000);
+    // setInterval(readjustApplicationHeight, 1000);
+
+    window.screen.onmozorientationchange = readjustApplicationHeight;
 
     getHTML("https://news.ycombinator.com/", parseHomepage);
 });

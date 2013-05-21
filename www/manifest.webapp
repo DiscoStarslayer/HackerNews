@@ -4,7 +4,8 @@
   "description": "Your new awesome Open Web App",
   "launch_path": "/index.html",
   "icons": {
-    "60": "/img/icons/icon-60.png"
+    "60": "/img/icons/icon-60.png",
+    "128": "/img/icons/icon-128.png"
   },
   "developer": {
     "name": "Darren Thompson",
@@ -16,6 +17,9 @@
   "permissions": {
     "systemXHR": {
       "description": "Required to load the hacker news website"
+    },
+    "browser": {
+      "description": "Required to display articles in-app"
     }
   },
   "type": "privileged"

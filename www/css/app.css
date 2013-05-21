@@ -14,7 +14,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: #fffcfa;
 }
 
 body {
@@ -38,6 +38,7 @@ section[role="region"] {
 	position: fixed;
 	width: 100%;
 	height: 100%;
+	transform: translate3d(0,0,0);
 	transition: transform 0.5s ease;
 }
 
@@ -80,17 +81,20 @@ section[role="region"] {
 }
 
 .title {
-    font: 2rem "MozTT",Sans-serif;
+    font: 1.9rem "MozTT",Sans-serif;
+    padding-top: 1rem;
 }
 
 .subtitle {
     font: 1rem "MozTT",Sans-serif;
+    color: #5c5c5c;
 }
 
 td {
 	border-style: solid;
-	border-width: 0.1rem;
-	border-color: rgb(89, 96, 104);
+	border-width: 0.2rem;
+	border-left-width: 0;
+	border-color: #ffc8a3;
 }
 
 table {
@@ -103,6 +107,14 @@ table {
 
 .right {
 	border-left-width: 0;
+	background-image: url("/img/comment.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 5rem;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 1.5rem;
 }
 
 #frame {
@@ -132,6 +144,7 @@ table {
 .buffer {
 	border-width: 0 0.1rem 0 0;
 	border-style: dashed;
+	border-color: #5c5c5c;
 	width: 0.5rem;
 	height: 100%;
 }
@@ -145,4 +158,9 @@ table {
 
 .body {
 	font-size: 1.5rem;
+}
+
+.meta {
+	font-size: 1rem;
+	color: #5c5c5c;
 }

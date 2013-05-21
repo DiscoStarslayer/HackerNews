@@ -73,7 +73,7 @@ define(function(require) {
 
     function articleClick(elem){
         $('.fulltext').empty();
-        $('.fulltext').append('<iframe src="" id="frame" sandbox="allow-forms allow-scripts" mozbrowser remote></iframe>');
+        $('.fulltext').append('<iframe src="" id="frame" remote mozbrowser></iframe>');
         slideWindow();
         window.setTimeout(function(){
             $('#header').text("Article");
@@ -109,11 +109,11 @@ define(function(require) {
 
     function createArticleBlock(article){
         var block = '<tr><td class="left" data-url="' + article.articleURL + 
-                    '"><p><span class="title">' + article.title + 
-                    '</span><br /><span class="subtitle">' + article.subText +
-                    '</span></p></td><td class="right" data-url="' + article.commentsURL +
+                    '"><div class="title">' + article.title + 
+                    '</div><br /><div class="subtitle">' + article.subText +
+                    '</div></td><td class="right" data-url="' + article.commentsURL +
                     '"><p class="comment-number">' + article.comments + '</p></td></tr>';
-        $("#articleTable").append(block);
+        return block;
     }
 
     function createCommentBlock(comment){
@@ -132,13 +132,15 @@ define(function(require) {
                            '</div>\
                         </div>\
                      </div>';
-        $("#comments-window").append(block);
+        return block;
     }
 
     function displayArticles(articles){
+        var block = "";
         for (var i = 0; i < articles.length; i++){
-            createArticleBlock(articles[i]);
+            block = block + createArticleBlock(articles[i]);
         }
+        $("#articleTable").append(block);
     }
 
     function addClickHandlers(){
@@ -187,10 +189,12 @@ define(function(require) {
         var comments = commentsTable.getElementsByTagName("table");
 
         var parsedComments = new Array();
+        var block = "";
         for (var i = 0; i < comments.length; i++){
             parsedComments.push(parseComment(comments[i]));
-            createCommentBlock(parsedComments[i]);
+            block = block + createCommentBlock(parsedComments[i]);
         }
+        $("#comments-window").append(block);
     }
 
     function parseHomepage() {
@@ -215,7 +219,10 @@ define(function(require) {
 
                 //remove 3 trailling characters
                 articles[i].subText = subText.slice(0, -3);
-                articles[i].comments = rawSubText[i].childNodes[4].textContent;
+                articles[i].comments = parseInt(rawSubText[i].childNodes[4].textContent);
+                if (isNaN(articles[i].comments)) {
+                    articles[i].comments = "None";
+                }
                 articles[i].commentsURL = rawSubText[i].childNodes[4].getAttribute("href");
             } else {
                 articles[i].subText = rawSubText[i].childNodes[0].textContent;

@@ -215,7 +215,10 @@ define(function(require) {
 
                 //remove 3 trailling characters
                 articles[i].subText = subText.slice(0, -3);
-                articles[i].comments = rawSubText[i].childNodes[4].textContent;
+                articles[i].comments = parseInt(rawSubText[i].childNodes[4].textContent);
+                if (isNaN(articles[i].comments)) {
+                    articles[i].comments = "None";
+                }
                 articles[i].commentsURL = rawSubText[i].childNodes[4].getAttribute("href");
             } else {
                 articles[i].subText = rawSubText[i].childNodes[0].textContent;

@@ -73,7 +73,7 @@ define(function(require) {
 
     function articleClick(elem){
         $('.fulltext').empty();
-        $('.fulltext').append('<iframe src="" id="frame" sandbox="allow-forms allow-scripts" mozbrowser remote></iframe>');
+        $('.fulltext').append('<iframe src="" id="frame" remote mozbrowser></iframe>');
         slideWindow();
         window.setTimeout(function(){
             $('#header').text("Article");

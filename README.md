@@ -8,8 +8,6 @@
 * Add it to your Firefox OS simulator/emulator/device
 * Enjoy Hacker News without squinting
 
-# !!NB!! This webapp requires systemXHR, until app is submited to Mozilla marketplace you will need to ensure your device allows this. !!NB!!
-
 # Feature List
 * Native and clean Firefox OS Design
 * Pull in front page articles, and relevant metadata
@@ -18,9 +16,6 @@
 * In-app Navigation
 
 # TODO
-* Parse and pretty-print comments, currently opening comments page does nothing
-* Rework UX, esp. font size
-* Test on actual hardware
 * Load more than first 30 articles
 * Become the very best that no-one ever was
 * Parse news and job offer posts properly

@@ -109,9 +109,9 @@ define(function(require) {
 
     function createArticleBlock(article){
         var block = '<tr><td class="left" data-url="' + article.articleURL + 
-                    '"><p><span class="title">' + article.title + 
-                    '</span><br /><span class="subtitle">' + article.subText +
-                    '</span></p></td><td class="right" data-url="' + article.commentsURL +
+                    '"><div class="title">' + article.title + 
+                    '</div><br /><div class="subtitle">' + article.subText +
+                    '</div></td><td class="right" data-url="' + article.commentsURL +
                     '"><p class="comment-number">' + article.comments + '</p></td></tr>';
         return block;
     }

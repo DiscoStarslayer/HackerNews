@@ -56,7 +56,7 @@ define(function(require) {
     }
 
     function readjustHeight(elem){
-        $(elem).height($(window).height()-(rem() * 5));
+        $(elem).height(window.innerHeight-(rem() * 5));
     }
 
     function readjustApplicationHeight(){
@@ -250,8 +250,9 @@ define(function(require) {
     });
 
     readjustApplicationHeight();
-
-    setInterval(readjustApplicationHeight, 1000);
+    window.screen.onmozorientationchange = (function () {
+        setInterval(readjustApplicationHeight, 750);
+    });
 
     getHTML("https://news.ycombinator.com/", parseHomepage);
 });

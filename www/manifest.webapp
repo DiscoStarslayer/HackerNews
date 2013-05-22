@@ -1,7 +1,7 @@
 {
-  "version": "0.1",
+  "version": "1.0",
   "name": "Hacker News",
-  "description": "Your new awesome Open Web App",
+  "description": "Hacker News Reader for Firefox OS",
   "launch_path": "/index.html",
   "icons": {
     "60": "/img/icons/icon-60.png",
@@ -9,10 +9,9 @@
   },
   "developer": {
     "name": "Darren Thompson",
-    "url": "http://www.telepants.com"
+    "url": "http://www.dathomp.com"
   },
   "installs_allowed_from": ["*"],
-  "appcache_path": "/cache.manifest",
   "default_locale": "en",
   "permissions": {
     "systemXHR": {

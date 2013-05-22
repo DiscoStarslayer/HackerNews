@@ -21,6 +21,14 @@ define(function(require) {
 
     //HTML escape function, via http://stackoverflow.com/questions/24816/escaping-html-strings-with-jquery
 
+    var slideStateEnum = {
+        LEFT : 0,
+        CENTER : 1,
+        RIGHT : 2
+    }
+
+    var leftmostPane = slideStateEnum.CENTER;
+
     var escapeHTML = (function () {
         'use strict';
         var chr = {
@@ -61,31 +69,38 @@ define(function(require) {
 
     function readjustApplicationHeight(){
         readjustHeight('.content');
-        readjustHeight('.fulltext');
-
-        readjustHeight('#frame');
+        readjustHeight('#fulltext');
     }
 
     function slideWindow(){
-        $('.icon').removeClass("icon-close").addClass("icon-back");
-        window.location = "#slide";
+        if (leftmostPane == slideStateEnum.CENTER){
+            $('.icon').removeClass("icon-close").addClass("icon-back");
+            $('#center-slide').attr('id', 'left-slide');
+            $('#right-slide').attr('id', 'center-slide');
+            leftmostPane = slideStateEnum.LEFT;
+        }
+        else if (leftmostPane == slideStateEnum.LEFT){
+            $('.icon').removeClass("icon-back").addClass("icon-close");
+            $('#center-slide').attr('id', 'right-slide');
+            $('#left-slide').attr('id', 'center-slide');
+            leftmostPane = slideStateEnum.CENTER;
+        }        
     }
 
     function articleClick(elem){
-        $('.fulltext').empty();
-        $('.fulltext').append('<iframe src="" id="frame" remote mozbrowser></iframe>');
+        $('#fulltext').empty();
+        $('#fulltext').append('<iframe src="" id="frame" remote mozbrowser></iframe>');
         slideWindow();
         window.setTimeout(function(){
+            readjustHeight('#frame');
             $('#header').text("Article");
-            $('#openBrowse').show();
+            $('#openBrowser').show();
             $('#frame').attr("src", elem.attr("data-url"));
         }, 500);
     }
 
     function commentClick(elem){
-        $('.fulltext').empty();
-        $('.fulltext').append('<div id="comments-window"></div>');
-
+        $('#fulltext').empty();
         slideWindow();
 
         window.setTimeout(function(){
@@ -95,16 +110,17 @@ define(function(require) {
     }
 
     function cornerClick(elem){
-        if($('.icon').hasClass("icon-close")){
+        if(leftmostPane == slideStateEnum.CENTER){
             close();
-        }
+        } else {
+            slideWindow();
 
-        $('.icon').removeClass("icon-back").addClass("icon-close");
-        $('#openBrowse').hide();
-        $('#header').text("Hacker News");
-        window.setTimeout(function() {
-            $('#frame').attr("src", "");
-        }, 500);
+            $('#openBrowser').hide();
+            $('#header').text("Hacker News");
+            window.setTimeout(function() {
+                $('#fulltext').empty();
+            }, 500);
+        }
     }
 
     function createArticleBlock(article){
@@ -150,7 +166,7 @@ define(function(require) {
         $(".right").click(function() {
             commentClick($(this));
         });
-        $("#openBrowse").click(function(){
+        $("#openBrowser").click(function(){
             openArticleInBrowser();
         });
     }
@@ -194,7 +210,7 @@ define(function(require) {
             parsedComments.push(parseComment(comments[i]));
             block = block + createCommentBlock(parsedComments[i]);
         }
-        $("#comments-window").append(block);
+        $("#fulltext").append(block);
     }
 
     function parseHomepage() {

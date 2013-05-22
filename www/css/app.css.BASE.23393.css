@@ -14,23 +14,16 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #fffcfa;
+  background-color: #fff;
+}
+
+body {
+  background: none;
 }
 
 section[role="region"] {
   margin-bottom: 1.5rem;
   position: relative;
-}
-
-td {
-	border-style: solid;
-	border-width: 0.2rem;
-	border-left-width: 0;
-	border-color: #ffc8a3;
-}
-
-table {
-	border-collapse: collapse;
 }
 
 .header {
@@ -39,27 +32,13 @@ table {
 	width: 100%;
 }
 
-.slider {
+.content-slider {
 	top: 0;
 	left: 0;
 	position: fixed;
 	width: 100%;
 	height: 100%;
-}
-
-#left-slide {
-	transform: translate3d(-100%,0,0);
-	transition: transform 0.5s ease;
-}
-
-#center-slide {
-	transform: translate3d(0,0,0);
-	transition: transform 0.5s ease;
-}
-
-#right-slide {
-	transform: translate3d(100%,0,0);
-	transition: transform 0.5s ease;
+	transition: left 0.5s ease;
 }
 
 .content {
@@ -69,14 +48,52 @@ table {
 	width: 100%;
 }
 
+.articles {
+    width: 100%;
+}
+
+.fulltext-slider {
+	position: fixed;
+	top: 0px;
+	left: 100%;
+	width: 100%;
+	height: 100%;
+	transition: left 0.5s ease;
+}
+
+.fulltext {
+	margin-top: 5rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100%;
+}
+
+#slide:target {
+	left: -100%;
+	transition: left 0.5s ease;
+}
+
+#slide:target + .fulltext-slider{
+	left: 0;
+	transition: left 0.5s ease;
+}
+
 .title {
-    font: 1.9rem "MozTT",Sans-serif;
-    padding-top: 1rem;
+    font: 2rem "MozTT",Sans-serif;
 }
 
 .subtitle {
     font: 1rem "MozTT",Sans-serif;
-    color: #5c5c5c;
+}
+
+td {
+	border-style: solid;
+	border-width: 0.1rem;
+	border-color: rgb(89, 96, 104);
+}
+
+table {
+	border-collapse: collapse;
 }
 
 .left {
@@ -85,14 +102,6 @@ table {
 
 .right {
 	border-left-width: 0;
-	background-image: url("/img/comment.png");
-	background-size: 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 5rem;
-	vertical-align: middle;
-	text-align: center;
-	font-size: 1.5rem;
 }
 
 #frame {
@@ -100,10 +109,14 @@ table {
 	border-style: none;
 }
 
-#openBrowser {
+#openBrowse {
 	padding: 0;
 	margin: 0;	
 	display: none;
+}
+
+#comments-window {
+	width: 100%;
 }
 
 .comment {
@@ -111,26 +124,24 @@ table {
 	display: table;
 }
 
-.buffer {
-	border-width: 0 0.1rem 0 0;
-	border-style: dashed;
-	border-color: #5c5c5c;
-	width: 0.5rem;
-	height: 100%;
+.comment > div {
 	display: table-cell;
 }
 
+.buffer {
+	border-width: 0 0.1rem 0 0;
+	border-style: dashed;
+	width: 0.5rem;
+	height: 100%;
+}
+
 .comment-container {
-	padding: 0.5rem 0.9rem;
+	padding: 0.5rem;
+	padding-top: 0.8rem;
+	padding-bottom: 0.9rem;
 	float: left;
-	display: table-cell;
 }
 
 .body {
 	font-size: 1.5rem;
-}
-
-.meta {
-	font-size: 1rem;
-	color: #5c5c5c;
 }

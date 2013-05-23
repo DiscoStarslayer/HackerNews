@@ -8,15 +8,6 @@ define(function(require) {
     // http://zeptojs.com/
     var $ = require('zepto');
 
-    // Need to verify receipts? This library is included by default.
-    // https://github.com/mozilla/receiptverifier
-    require('receiptverifier');
-
-    // Want to install the app locally? This library hooks up the
-    // installation button. See <button class="install-btn"> in
-    // index.html
-    require('./install-button');
-
     // Write your app here.
 
     //HTML escape function, via http://stackoverflow.com/questions/24816/escaping-html-strings-with-jquery

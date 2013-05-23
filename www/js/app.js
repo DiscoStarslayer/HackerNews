@@ -70,6 +70,7 @@ define(function(require) {
     function readjustApplicationHeight(){
         readjustHeight('.content');
         readjustHeight('#fulltext');
+        readjustHeight('#frame');
     }
 
     function slideWindow(){

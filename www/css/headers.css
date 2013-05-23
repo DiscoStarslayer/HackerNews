@@ -352,11 +352,6 @@ section[role="region"].skin-organic header h2,
   color: #fff;
 }
 
-section[role="region"] {
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
 /* ----------------------------------
  * HEADERS: right-to-left tweaks
  * ---------------------------------- */
@@ -385,5 +380,8 @@ html[dir="rtl"] section[role="region"] > header:first-child > a .icon:after {
 }
 
 html[dir="rtl"] section[role="region"] > header:first-child .icon.icon-back {
+  background-image: url(headers/images/icons/back-rtl.png);
+}
+.icon-back {
   background-image: url(headers/images/icons/back-rtl.png);
 }

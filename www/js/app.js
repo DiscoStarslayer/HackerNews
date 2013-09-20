@@ -18,6 +18,8 @@ define(function(require) {
         RIGHT : 2
     }
 
+    var currentUrl;
+
     var leftmostPane = slideStateEnum.CENTER;
 
     var escapeHTML = (function () {
@@ -42,9 +44,12 @@ define(function(require) {
 
 
     function openArticleInBrowser(url){
-        var url = $("#frame").attr("src");
         cornerClick(this);
         window.location = "#";
+        openBrowser(url);
+    }
+
+    function openBrowser(url){
         var openURL = new MozActivity({
             name: "view",
             data: {
@@ -53,6 +58,7 @@ define(function(require) {
             }
         });
     }
+
 
     function readjustHeight(elem){
         $(elem).height(window.innerHeight-(rem() * 5));
@@ -87,7 +93,8 @@ define(function(require) {
             readjustHeight('#frame');
             $('#header').text("Article");
             $('#openBrowser').show();
-            $('#frame').attr("src", elem.attr("data-url"));
+            currentUrl = elem.attr("data-url");
+            $('#frame').attr("src", 'http://read.dathomp.com/?url=' + elem.attr("data-url") + '&apiKey=kt9DInLRPSRzMj8MtbbuoUGEIJOa0N1eG0JFrKlnuKkT2ntgZWAy7IoL0YiT');
         }, 500);
     }
 
@@ -159,7 +166,7 @@ define(function(require) {
             commentClick($(this));
         });
         $("#openBrowser").click(function(){
-            openArticleInBrowser();
+            openArticleInBrowser(currentUrl);
         });
     }
 
@@ -174,15 +181,18 @@ define(function(require) {
         comment.indents = parseInt(blankGif.getAttribute('width'))/40;
 
         var meta = escapeHTML(rawComment.getElementsByClassName("comhead")[0].textContent);
-        var body = escapeHTML(rawComment.getElementsByClassName("comment")[0].textContent);
+        var body = rawComment.getElementsByClassName("comment")[0].innerHTML;
 
         //re to remove reply at end of body. For some reason reply is randomly in the comment span
-        var re = /reply$/i;
+        var re = /<a\ href="(?!http).*">reply<\/a>/i;
+        body = body.replace(re, "");
+
+        //re to clean up code comments
+        re = /<pre><code>|<\/pre><\/code>/gi;
         body = body.replace(re, "");
 
         comment.meta = meta;
         comment.body = body;
-
 
         return comment;
     }
@@ -203,6 +213,14 @@ define(function(require) {
             block = block + createCommentBlock(parsedComments[i]);
         }
         $("#fulltext").append(block);
+        //make comment links open in browser instead of destroying app
+        var $commentLinks = $(".comment a");
+        $commentLinks.each(function(index){
+            $commentLinks.eq(index).click(function(e){
+                e.preventDefault();
+                openBrowser($commentLinks.eq(index).attr('href'));
+            });
+        });
     }
 
     function parseHomepage() {

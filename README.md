@@ -11,11 +11,12 @@
 # Feature List
 * Native and clean Firefox OS Design
 * Pull in front page articles, and relevant metadata
-* Display Articles in-app
+* Display Articles and Jobs in-app through readability parser
+* Parse and format comments
+* Properly link comment links
 * Open in browser button
 * In-app Navigation
 
 # TODO
 * Load more than first 30 articles
 * Become the very best that no-one ever was
-* Parse news and job offer posts properly

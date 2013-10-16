@@ -72,11 +72,14 @@ table {
 .title {
     font: 1.9rem "MozTT",Sans-serif;
     padding-top: 1rem;
+    padding-left: 1rem;
 }
 
 .subtitle {
     font: 1rem "MozTT",Sans-serif;
     color: #5c5c5c;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .left {

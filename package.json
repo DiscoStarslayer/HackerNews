@@ -3,8 +3,12 @@
   "amd": {},
   "volo": {
     "baseUrl": "www/lib"
-  }
+  },
   "dependencies": {
   	"jshint": "2.4.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:WhiteDawn/HackerNews.git#rework"
   }
 }

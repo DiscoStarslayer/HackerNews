@@ -1,0 +1,14 @@
+module.exports = {
+  build: {
+      summary: 'Builds project',
+      run: 'node tools/r.js -o tools/build.js'
+  },
+  lint: {
+      summary: 'Lints project',
+      run: 'find www -type f -name "*.js" -print0 | xargs -0 node_modules/.bin/jshint'
+  },
+  clean: {
+      summary: 'Cleans project',
+      run: 'v.rm www-built'
+  }
+};

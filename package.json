@@ -1,0 +1,10 @@
+{
+  "name": "HackerNews",
+  "amd": {},
+  "volo": {
+    "baseUrl": "www/lib"
+  }
+  "dependencies": {
+  	"jshint": "2.4.x"
+  }
+}

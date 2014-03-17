@@ -1,5 +1,6 @@
+.*
+!/.gitignore
 www-built
 www-ghpages
 node_modules
-.sass_cache/
 www/css

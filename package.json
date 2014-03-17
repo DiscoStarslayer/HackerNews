@@ -5,7 +5,8 @@
     "baseUrl": "www/lib"
   },
   "dependencies": {
-  	"jshint": "2.4.x"
+  	"jshint": "2.4.x",
+    "volo": "0.3.x"
   },
   "repository": {
     "type": "git",

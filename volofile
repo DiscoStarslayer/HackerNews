@@ -1,6 +1,7 @@
 module.exports = {
   build: {
       summary: 'Builds project',
+      depends: ['clean', 'lint', 'scss'],
       run: 'node tools/r.js -o tools/build.js'
   },
   lint: {
@@ -10,5 +11,9 @@ module.exports = {
   clean: {
       summary: 'Cleans project',
       run: 'v.rm www-built'
+  },
+  scss: {
+      summary: 'Converts Scss to Css',
+      run: 'scss --update www/sass:www/css'
   }
 };

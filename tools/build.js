@@ -9,5 +9,9 @@
         {
             "name": "app"
         }
-    ]
+    ],
+    "optimize": "uglify2",
+    "optimizeCss": "standard",
+    "useStrict": true,
+    "fileExclusionRegExp": /(^\.)|(^sass.*)/,
 }

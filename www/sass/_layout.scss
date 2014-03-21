@@ -1,0 +1,77 @@
+@import 'variables';
+@import 'header';
+
+h2 {
+	font-size: 1.6rem;
+}
+
+p {
+	font-size: 1.9rem;
+	margin: 0;
+	padding: 0;
+}
+
+.mini {
+	font-size: 1.4rem;
+	margin: 0;
+	padding: 0;
+}
+
+.article-title {
+	margin: 1rem 0 0.5rem 1.5rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	float: left;
+	width: calc(100% - 5.5rem - 1.5rem);
+}
+
+.article-data {
+	margin: 0 0 1rem 1.5rem;
+	font-size: 1.3rem;
+	float: left;
+	width: calc(100% - 5.5rem - 1.5rem);
+	color: #00AACC;
+}
+
+.comment-box {
+	height: 5rem;
+	width: 5rem;
+	float: right;
+	padding: 0;
+	margin: 0;
+	background-color: $ycColor;
+	position: absolute;
+	top: calc(50% - 2.5rem);
+	right: 0;
+	box-shadow: 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.53) inset;
+}
+
+.comments {
+	text-align: center;
+	line-height: 5rem;
+	font-weight: bold;
+	color: #F4F4F4;
+	text-shadow: 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.53), 0.2rem 0rem 0.1rem rgba(0, 0, 0, 0.53), 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.53);
+}
+
+article {
+	height: calc(100% - 4.65rem);
+	width: 100%;
+	padding: 0;
+	margin: 0.15rem 0 0 0;
+	overflow: scroll;
+}
+
+.article-container {
+	display: block;
+	width: calc(100% - 3rem);
+	background-color: #F4F4F4;
+	min-height: 6rem;
+	border-bottom-color: #2C393B;
+	border-bottom-style: solid;
+	border-bottom-width: 0.1rem;
+	margin: 0 1.5rem;
+	padding: 0;
+	overflow: auto;
+	position: relative;
+}

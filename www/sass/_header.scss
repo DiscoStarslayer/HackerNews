@@ -1,0 +1,39 @@
+@import 'variables';
+
+header {
+	height: $headerHeight;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: $headerBg;
+	position: relative;
+	top: 0;
+	left: 0;
+	background-image: url(../img/grain.png);
+	line-height: 2.5rem;
+	z-index: 5;
+	box-shadow: -1.5rem 0 1.5rem rgba(0, 0, 0, 0.5);
+}
+
+.color-bar {
+	background-color: $ycColor;
+	height: 0.15rem;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: $headerHeight;
+	z-index: 10;
+}
+
+.title {
+	text-shadow: 0.2rem 0 0.1rem rgba(0,0,0,0.53), 0 0.2rem 0.1rem rgba(0,0,0,0.53), 0.2rem 0.2rem 0.1rem rgba(0,0,0,0.53);
+	padding: 1rem 0 1rem 3rem
+}
+
+h1 {
+	font-weight: 400;
+	font-size: 2.5rem;
+	color: #f4f4f4;
+	padding: 0;
+	margin: 0;
+}

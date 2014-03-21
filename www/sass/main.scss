@@ -1,6 +1,22 @@
-$bgcolor: rgb(10, 10, 10);
-
+@import 'variables';
+@import 'layout';
 
 html {
-	background-color: $bgcolor;
+	height: 100%;
+	font-size: 62.5%;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	@extend html;
+	display: block;
+	overflow: hidden;
+	font-family: $fonts;
+	background-color: #F4F4F4;
+}
+
+div {
+	padding: 0;
+	margin: 0;
 }

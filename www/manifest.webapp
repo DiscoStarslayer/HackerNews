@@ -1,5 +1,5 @@
 {
-  "name": "Hacker News",
+  "name": "News",
   "description": "A reader for Hacker News",
   "launch_path": "/index.html",
   "icons": {

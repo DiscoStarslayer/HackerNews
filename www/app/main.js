@@ -1,13 +1,20 @@
 define(function (require) {
-	"use strict";
+    "use strict";
     // Load any app-specific modules
     // with a relative require call,
     // like:
-    var messages = require('./messages');
+    var articleGenerator = require('./articleGenerator');
 
-    // Load library/vendor modules using
-    // full IDs, like:
-    var print = require('print');
+    var parser = require('hnParser');
 
-    print(messages.getHello());
+    parser.getArticles(function (data) {
+        var articles = data.articles;
+        var articleTag = document.body.getElementsByTagName('article')[0];
+
+        var articleFragment = document.createDocumentFragment();
+        for (var i = 0; i < articles.length; i++) {
+            articleFragment.appendChild(articleGenerator.createArticleDom(articles[i]));
+        }
+        articleTag.appendChild(articleFragment);
+    });
 });

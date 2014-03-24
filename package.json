@@ -1,15 +1,15 @@
 {
-  "name": "News",
-  "amd": {},
-  "volo": {
-    "baseUrl": "www/lib"
-  },
-  "dependencies": {
-  	"jshint": "2.4.x",
-    "volo": "0.3.x"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:WhiteDawn/HackerNews.git#rework"
-  }
+    "name": "News",
+    "amd": {},
+    "volo": {
+        "baseUrl": "www/lib"
+    },
+    "dependencies": {
+        "jshint": "2.4.x",
+        "volo": "0.3.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:WhiteDawn/HackerNews.git#rework"
+    }
 }

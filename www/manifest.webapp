@@ -1,13 +1,19 @@
 {
-  "name": "News",
-  "description": "A reader for Hacker News",
-  "launch_path": "/index.html",
-  "icons": {
-    "128": "/img/icon-128.png"
-  },
-  "developer": {
-    "name": "Darren Thompson",
-    "url": "http://dathomp.com"
-  },
-  "default_locale": "en"
+    "name": "News",
+    "description": "A reader for Hacker News",
+    "launch_path": "/index.html",
+    "type": "privileged",
+    "icons": {
+        "128": "/img/icon-128.png"
+    },
+    "developer": {
+        "name": "Darren Thompson",
+        "url": "http://dathomp.com"
+    },
+    "default_locale": "en",
+    "permissions": {
+        "systemXHR": {
+            "description": "Required to load the yCombinator website"
+        }
+    }
 }

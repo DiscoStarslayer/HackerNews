@@ -1,7 +1,7 @@
 define(function () {
     "use strict";
 
-    var subtextFromData = function(articleData) {
+    var subtextFromData = function (articleData) {
         var subtextString;
 
         if (articleData.articleType == 'job') {
@@ -15,7 +15,7 @@ define(function () {
     };
 
     return {
-        createArticleDom: function(articleData) {
+        createArticleDom: function (articleData) {
             var articleContainer = document.createElement('div');
             articleContainer.className = 'article-container';
 

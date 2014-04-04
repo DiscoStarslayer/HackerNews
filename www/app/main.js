@@ -42,8 +42,7 @@ define(function (require) {
             for (var j = 0; j < articleTouchContainersLength; j++) {
                 var articleTouchContainer = articleTouchContainers[j];
                 touchEvents.attachInteractionEvents(articleTouchContainer);
-
-                articleTouchContainer.addEventListener('tap', testFunction);
+                interaction.handleArticleInteraction(articleTouchContainer);
             }
 
             setTimeout(finishedCallback, 200);

@@ -3,6 +3,8 @@ define(function () {
 
     var longPress = new Event('longpress');
     var tap = new Event('tap');
+    var touchEventOver = new Event('toucheventover');
+    var touchEventStart = new Event('toucheventstart');
     var touchData = {};
 
     var getTouchData = function (touch) {
@@ -20,6 +22,7 @@ define(function () {
 
         if (!isDrag(data)) {
             data.currentTarget.dispatchEvent(longPress);
+            touchData[touch.identifier].hasLongPressed = true;
         }
 
     };
@@ -27,8 +30,9 @@ define(function () {
     var checkIfTap = function (touch) {
         updateTouchData(touch);
         var data = getTouchData(touch);
+        var hasLongPressed = data.hasLongPressed;
 
-        if (!isDrag(data)) {
+        if (!isDrag(data) && !hasLongPressed) {
             data.currentTarget.dispatchEvent(tap);
         }
     };
@@ -44,8 +48,11 @@ define(function () {
             movementY: 0,
             startTime: Date.now(),
             longPressTimeoutId: longPressTimeoutId,
-            currentTarget: currentTarget
+            currentTarget: currentTarget,
+            hasLongPressed: false
         };
+
+        currentTarget.dispatchEvent(touchEventStart);
     };
 
     var updateTouchData = function (touch) {
@@ -69,6 +76,7 @@ define(function () {
         var data = getTouchData(touch);
 
         window.clearTimeout(data.longPressTimeoutId);
+        data.currentTarget.dispatchEvent(touchEventOver);
         delete touchData[touch.identifier];
     };
 
@@ -108,7 +116,10 @@ define(function () {
 
     return {
 
-        attachInteractionEvents: function (element, tapEventHandler, longPressEventHandler) {
+        //Adds logic for new events to the element given to the function
+        //dispatches 'tap' event on a single tap
+        //dispatches 'longpress' event on a long press
+        attachInteractionEvents: function (element) {
             element.addEventListener('touchstart', startTouch);
             element.addEventListener('touchend', endTouch);
             element.addEventListener('touchmove', moveTouch);

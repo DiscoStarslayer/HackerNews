@@ -17,6 +17,7 @@ define(function () {
     return {
         createArticleDom: function (articleData) {
             var touchContainer = document.createElement('div');
+            touchContainer.id = 'article-touch-container';
             touchContainer.classList.add('article-touch-container');
 
             var articleContainer = document.createElement('div');

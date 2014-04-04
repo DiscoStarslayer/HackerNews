@@ -5,12 +5,17 @@ define(function (require) {
     // like:
     var articleGenerator = require('./articleGenerator');
     var loadingScreen = require('./loadingScreen');
-    var interaction = require('./interaction');
+    //var interaction = require('./interaction');
+    var genericInteraction = require('./genericInteraction');
 
     var parser = require('hnParser');
 
     var runSlowFunction = function (functionToRun) {
         loadingScreen.show(functionToRun, loadingScreen.hide);
+    };
+
+    var testFunction = function (event) {
+        console.log(event.target);
     };
 
     var loadArticles = function (finishedCallback) {
@@ -27,8 +32,20 @@ define(function (require) {
             }
 
             articleTag.appendChild(articleFragment);
-            interaction.applyClickHandlers(
-                document.getElementsByClassName('article-touch-container'));
+            //interaction.applyClickHandlers(
+                //document.getElementsByClassName('article-touch-container'));
+
+            var articleTouchContainers = 
+                document.getElementsByClassName('article-touch-container');
+            var articleTouchContainersLength = articleTouchContainers.length;
+
+            for (var j = 0; j < articleTouchContainersLength; j++) {
+                var articleTouchContainer = articleTouchContainers[j];
+                genericInteraction.attachInteractionEvents(
+                    articleTouchContainer);
+
+                articleTouchContainer.addEventListener('tap', testFunction);
+            }
 
             setTimeout(finishedCallback, 200);
         });

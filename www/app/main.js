@@ -5,6 +5,7 @@ define(function (require) {
     // like:
     var articleGenerator = require('./articleGenerator');
     var loadingScreen = require('./loadingScreen');
+    var interaction = require('./interaction');
 
     var parser = require('hnParser');
 
@@ -26,6 +27,8 @@ define(function (require) {
             }
 
             articleTag.appendChild(articleFragment);
+            interaction.applyClickHandlers(
+                document.getElementsByClassName('article-touch-container'));
 
             setTimeout(finishedCallback, 200);
         });

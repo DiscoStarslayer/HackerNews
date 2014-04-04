@@ -94,6 +94,8 @@ define(function () {
             fullObject.url = article.url;
             if (subtext.articleType == 'job') {
                 fullObject.time = subtext.time;
+                fullObject.comments = 'Job';
+                fullObject.commentsURL = article.url;
             } else {
                 fullObject.score = subtext.score;
                 fullObject.user = subtext.user;

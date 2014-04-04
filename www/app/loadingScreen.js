@@ -4,7 +4,7 @@ define(function () {
 
     return {
         show: function (callback, finishedCallback) {
-            loadingNode.className = 'loading-float';
+            loadingNode.classList.toggle('loading-hidden', false);
 
             var transitionEndAction = function () {
                 loadingNode.removeEventListener('transitionend', 
@@ -15,7 +15,7 @@ define(function () {
             loadingNode.addEventListener('transitionend', transitionEndAction);
         },
         hide: function () {
-            loadingNode.className = 'loading-float loading-hide';
+            loadingNode.classList.toggle('loading-hidden', true);
         }
     };
 });

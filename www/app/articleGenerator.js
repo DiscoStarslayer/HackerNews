@@ -16,32 +16,39 @@ define(function () {
 
     return {
         createArticleDom: function (articleData) {
+            var touchContainer = document.createElement('div');
+            touchContainer.classList.add('article-touch-container');
+
             var articleContainer = document.createElement('div');
-            articleContainer.className = 'article-container';
+            articleContainer.classList.add('article-container');
 
             var commentBox = document.createElement('div');
-            commentBox.className = 'comment-box';
+            commentBox.classList.add('comment-box');
+            commentBox.id = 'comment-box';
 
             var comments = document.createElement('p');
-            comments.className = 'comments';
+            comments.classList.add('comments');
+            comments.id = 'comment-box';
             comments.textContent = articleData.comments;
 
             var articleTitle = document.createElement('p');
-            articleTitle.className = 'article-title';
+            articleTitle.classList.add('article-title');
             articleTitle.textContent = articleData.title;
 
             var br = document.createElement('br');
 
             var articleSubtext = document.createElement('p');
-            articleSubtext.className = 'mini article-data';
+            articleSubtext.classList.add('mini');
+            articleSubtext.classList.add('article-data');
             articleSubtext.textContent = subtextFromData(articleData);
 
             articleContainer.appendChild(commentBox).appendChild(comments);
             articleContainer.appendChild(articleTitle);
             articleContainer.appendChild(br);
             articleContainer.appendChild(articleSubtext);
+            touchContainer.appendChild(articleContainer);
 
-            return articleContainer;
+            return touchContainer;
         }
     };
 });

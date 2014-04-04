@@ -51,7 +51,9 @@ p {
     line-height: 5rem;
     font-weight: bold;
     color: #F4F4F4;
-    text-shadow: 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.53), 0.2rem 0rem 0.1rem rgba(0, 0, 0, 0.53), 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.53);
+    text-shadow: 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.53),
+        0.2rem 0rem 0.1rem rgba(0, 0, 0, 0.53),
+        0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.53);
 }
 
 article {
@@ -65,7 +67,6 @@ article {
 .article-container {
     display: block;
     width: calc(100% - 3rem);
-    background-color: #F4F4F4;
     min-height: 6rem;
     border-bottom-color: #2C393B;
     border-bottom-style: solid;
@@ -74,4 +75,14 @@ article {
     padding: 0;
     overflow: auto;
     position: relative;
+}
+
+.article-touch-container {
+    background-color: #F4F4F4;
+    width: 100%;
+    overflow: auto;
+}
+
+.article-touch-container.active {
+    background-color: #FFB280;
 }

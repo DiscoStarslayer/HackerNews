@@ -5,10 +5,10 @@ define(function (require) {
     // like:
     var articleGenerator = require('./articleGenerator');
     var loadingScreen = require('./loadingScreen');
-    //var interaction = require('./interaction');
-    var genericInteraction = require('./genericInteraction');
+    var interaction = require('./interaction');
 
     var parser = require('hnParser');
+    var touchEvents = require('touchEvents');
 
     var runSlowFunction = function (functionToRun) {
         loadingScreen.show(functionToRun, loadingScreen.hide);
@@ -41,8 +41,7 @@ define(function (require) {
 
             for (var j = 0; j < articleTouchContainersLength; j++) {
                 var articleTouchContainer = articleTouchContainers[j];
-                genericInteraction.attachInteractionEvents(
-                    articleTouchContainer);
+                touchEvents.attachInteractionEvents(articleTouchContainer);
 
                 articleTouchContainer.addEventListener('tap', testFunction);
             }

@@ -69,6 +69,8 @@ define(function () {
             Math.abs(touch.screenY - oldTouchData.screenY) +
             oldTouchData.movementY;
 
+        var b = Math.abs(touch.screenY - oldTouchData.screenY) + oldTouchData.movementY;
+
         touchData[touch.identifier] = newTouchData;
     };
 

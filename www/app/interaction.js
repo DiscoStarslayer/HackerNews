@@ -6,7 +6,7 @@ define(function () {
     };
 
     var articleTapHandler = function (tapEvent) {
-
+        tapEvent.target.setAttribute('style', 'background-color:black');
     };
 
     var articleLongPressHandler = function (pressEvent) {
@@ -19,7 +19,8 @@ define(function () {
 
     return {
         handleArticleInteraction: function(articleTouchContainer) {
-            articleTouchContainer.addEventListener('tap', articleTapHandler);
+            articleTouchContainer.addEventListener('tap', 
+                articleTapHandler);
 
             articleTouchContainer.addEventListener('longpress',
                 articleLongPressHandler);
